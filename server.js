@@ -113,10 +113,11 @@ app.get('/data', function (req, res) {
 
   var fs = require('fs');
   var obj = JSON.parse(fs.readFileSync('dummy.json', 'utf8'));
-  if(req.query.id) {
+  if(req.query.cuit) {
+    
     var jsonQuery = require('json-query')
 
-    let r = jsonQuery('[id='+req.query.id+'].first_name', {
+    let r = jsonQuery('[cuit='+req.query.cuit+'].embarcaciones', {
       data: obj
     })
     res.send(r.value);
