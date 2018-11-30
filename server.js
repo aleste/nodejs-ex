@@ -109,6 +109,31 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.get('/data', function (req, res) {
+
+  var fs = require('fs');
+  var obj = JSON.parse(fs.readFileSync('dummy.json', 'utf8'));
+  if(req.query.id) {
+    var jsonQuery = require('json-query')
+
+    let r = jsonQuery('[id='+req.query.id+'].first_name', {
+      data: obj
+    })
+    res.send(r.value);
+
+  }else{
+    res.send(obj);
+  }
+
+    
+ 
+});
+
+
+
+
+
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
