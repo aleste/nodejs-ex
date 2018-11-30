@@ -2,15 +2,15 @@
     {
       "cuit": 20264977925,
       "embarcaciones": [
-        {"dominio": "KO123", "eslora": 7, "manga": 2},
-        {"dominio": "KO321", "eslora": 8, "manga": 3}
+        {"dominio": "KO123", "eslora": 7, "manga": 2, "deuda": 433.90},
+        {"dominio": "KO321", "eslora": 8, "manga": 3, "deuda": 0}
       ]
     },
     {
       "cuit": 20222222220,
       "embarcaciones": [
-        {"dominio": "KO879", "eslora": 3, "manga": 1},
-        {"dominio": "KO456", "eslora": 8, "manga": 4}
+        {"dominio": "KO879", "eslora": 3, "manga": 1, "deuda": 2433.90},
+        {"dominio": "KO456", "eslora": 8, "manga": 4, "deuda": 4333.90}
       ]
     }
   ]

@@ -109,21 +109,28 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
-app.get('/data', function (req, res) {
+app.get('/api/contribuyente/:cuit/embarcacion/:dominio', function (req, res) {
 
   var fs = require('fs');
   var obj = JSON.parse(fs.readFileSync('dummy.json', 'utf8'));
-  if(req.query.cuit) {
-    
+  if(req.params.cuit && req.params.dominio) {
+   
     var jsonQuery = require('json-query')
 
-    let r = jsonQuery('[cuit='+req.query.cuit+'].embarcaciones', {
+    let r = jsonQuery('[cuit='+req.params.cuit+'].embarcaciones', {
       data: obj
     })
-    res.send(r.value);
-
+    let d = jsonQuery('[dominio='+req.params.dominio+'].deuda', {
+      data: r.value
+    })
+  console.log(d)
+    if(d.value) {
+      res.send('{ "success": true, "deuda": '+d.value+'}');
+    }else{
+      res.send('{ "success": false, "msg": "No se encontraron datos"}');
+    }
   }else{
-    res.send(obj);
+    res.send("Parametros incorrectos");
   }
 
     
