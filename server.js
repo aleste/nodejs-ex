@@ -123,12 +123,25 @@ app.get('/api/contribuyente/:cuit/embarcacion/:dominio', function (req, res) {
     let d = jsonQuery('[dominio='+req.params.dominio+'].deuda', {
       data: r.value
     })
-  console.log(d)
+  
+    let result = {};
+
     if(d.value) {
-      res.send('{ "success": true, "deuda": '+d.value+'}');
+      result = {
+        success: true,
+        deuda: d.value,
+        msg: ""
+      };
     }else{
-      res.send('{ "success": false, "msg": "No se encontraron datos"}');
+      result = {
+        success: false,
+        deuda: 0,
+        msg: "No se encontraron resultados"
+      };
     }
+
+    res.send(result)
+
   }else{
     res.send("Parametros incorrectos");
   }
